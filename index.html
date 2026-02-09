@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="form-wrapper">
+    <!-- Mensaje de éxito (toast) -->
+    <div class="success-message hidden" id="success-msg" role="alert">
+      <div class="success-box">
+        <strong>✓ Message Sent!</strong>
+        <p>Thanks for completing the form. We'll be in touch soon!</p>
+      </div>
+    </div>
+
+    <form class="contact-form" id="contact-form" action="procesar.php" method="POST" novalidate>
+
+      <h1>Contact Us</h1>
+
+      <div class="row names-row">
+        <div class="form-field">
+          <label for="firstName">First Name <span class="required">*</span></label>
+          <input 
+            type="text" 
+            id="firstName" 
+            name="first_name" 
+            required 
+            aria-required="true"
+            aria-invalid="false"
+            aria-describedby="err-first"
+          >
+          <span class="error-msg" id="err-first" aria-live="polite"></span>
+        </div>
+
+        <div class="form-field">
+          <label for="lastName">Last Name <span class="required">*</span></label>
+          <input 
+            type="text" 
+            id="lastName" 
+            name="last_name" 
+            required 
+            aria-required="true"
+            aria-invalid="false"
+            aria-describedby="err-last"
+          >
+          <span class="error-msg" id="err-last" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="email">Email Address <span class="required">*</span></label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          required 
+          aria-required="true"
+          aria-invalid="false"
+          aria-describedby="err-email"
+        >
+        <span class="error-msg" id="err-email" aria-live="polite"></span>
+      </div>
+
+      <fieldset class="form-field query-type-field">
+        <legend>Query Type <span class="required">*</span></legend>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="query_type" value="general" id="query-general" required>
+            <span>General Enquiry</span>
+          </label>
+          
+          <label class="radio-option">
+            <input type="radio" name="query_type" value="support" id="query-support">
+            <span>Support Request</span>
+          </label>
+        </div>
+        <span class="error-msg" id="err-query" aria-live="polite"></span>
+      </fieldset>
+
+      <div class="form-field">
+        <label for="message">Message <span class="required">*</span></label>
+        <textarea 
+          id="message" 
+          name="message" 
+          rows="5" 
+          required 
+          aria-required="true"
+          aria-describedby="err-message"
+        ></textarea>
+        <span class="error-msg" id="err-message" aria-live="polite"></span>
+      </div>
+
+      <div class="form-field consent-field">
+        <label class="checkbox-label">
+          <input 
+            type="checkbox" 
+            name="consent" 
+            value="1" 
+            required 
+            aria-required="true"
+            aria-describedby="err-consent"
+          >
+          <span>I consent to being contacted by the team <span class="required">*</span></span>
+        </label>
+        <span class="error-msg" id="err-consent" aria-live="polite"></span>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit</button>
+
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
