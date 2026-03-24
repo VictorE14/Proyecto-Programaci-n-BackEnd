@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad: Renderizado de JSON</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; padding: 50px; background-color: #f4f4f4; }
+        .card { border: 2px solid #2ecc71; border-radius: 12px; padding: 25px; width: 320px; background-color: white; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1 { color: #27ae60; margin-top: 0; font-size: 1.8em; }
+        .precio { color: #e67e22; font-weight: bold; font-size: 1.3em; margin: 10px 0; }
+        h3 { border-bottom: 1px solid #eee; padding-bottom: 5px; color: #34495e; }
+        ul { padding-left: 20px; list-style-type: square; }
+        li { margin-bottom: 8px; color: #555; }
+    </style>
+</head>
+<body>
+
+    <div id="taco-card" class="card">
+        <h1 id="taco-nombre">Cargando...</h1>
+        <p class="precio">Precio: <span id="taco-precio">0</span></p>
+        
+        <h3>Acompañamientos:</h3>
+        <ul id="lista-acompañamientos">
+            </ul>
+    </div>
+
+    <script>
+        // EL OBJETO JSON (Tus datos)
+        const taco = {
+            "id": "0001",
+            "tipo": "taco",
+            "nombre": "Taco lechon",
+            "precio": 20.00,
+            "ingredientes": {
+              "proteina": { "nombre": "Puerco", "preparacion": "Horneado" },
+              "salsa": { "nombre": "Tomate verde", "picor": "Medio" },
+              "acompañamientos": [
+                { "nombre": "Cebolla", "cantidad": "1 cucharada" },
+                { "nombre": "Guacamole", "cantidad": "2 cucharadas" }
+              ]
+            }
+        };
+
+        // LÓGICA PARA MANIPULAR EL DOM
+        
+        // 1. Insertamos el nombre
+        const elNombre = document.getElementById('taco-nombre');
+        elNombre.textContent = taco.nombre;
+
+        // 2. Insertamos el precio con formato $
+        const elPrecio = document.getElementById('taco-precio');
+        elPrecio.textContent = `$${taco.precio.toFixed(2)}`;
+
+        // 3. Llenamos la lista de acompañamientos
+        const laLista = document.getElementById('lista-acompañamientos');
+
+        taco.ingredientes.acompañamientos.forEach(item => {
+            // Creamos el elemento de lista <li>
+            const nuevoLi = document.createElement('li');
+            
+            // Le asignamos el texto (Nombre + Cantidad)
+            nuevoLi.textContent = `${item.nombre}: ${item.cantidad}`;
+            
+            // Lo "pegamos" dentro del <ul>
+            laLista.appendChild(nuevoLi);
+        });
+    </script>
+</body>
+</html>

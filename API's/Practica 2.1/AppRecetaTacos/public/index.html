@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>TacosMx</title> <link rel="stylesheet" href="estilo.css"> </head>
+<body>
+
+    <h1>Tacoschidos</h1> <form id="Form" class="buttons">
+        <button type="button" data-type="Puerco">🐷</button>
+        <button type="button" data-type="Pollo">🐔</button>
+        <button type="button" data-type="Pavo">🥚</button>
+        <button type="button" data-type="Res">🫎</button>
+    </form>
+
+    <div id="Container"></div>
+
+    <script>
+        document.querySelectorAll("#Form button").forEach(button => {
+            button.addEventListener("click", async (event) => {
+                const type = event.target.getAttribute("data-type").toLowerCase();
+                
+                const response = await fetch(`/receta/${type}`);
+                const receta = await response.json();
+                
+                const contenedor = document.getElementById("Container");
+
+                if (receta.error) {
+                    contenedor.innerHTML = "<h2>Receta no encontrada</h2>";
+                } else {
+                    contenedor.innerHTML = `
+                        <h2>${receta.nombre}</h2>
+                        <h3>Ingredientes:</h3>
+                        <p>Carne de: ${receta.ingredientes.proteina.nombre}, Modo preparación: ${receta.ingredientes.proteina.preparacion}</p>
+                        <p>Salsa: ${receta.ingredientes.salsa.nombre} (${receta.ingredientes.salsa.picor})</p>
+                        ${receta.ingredientes.acompañamientos.map(a => 
+                            `<p>Acompañamiento: ${a.cantidad} : ${a.nombre}</p>`
+                        ).join("")}`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
