@@ -1,3 +1,7 @@
+//Tema 2: Api´s
+//AA 2.2 Axios y autenticación 
+//Victor Enrique Tuz Dzidz
+
 fetch('https://jsonplaceholder.typicode.com/posts')
   .then(respuesta => {
     if (!respuesta.ok) {
