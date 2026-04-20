@@ -1,0 +1,128 @@
+/* Fondo oscuro con tu imagen */
+body {
+    background-image: url('/images/fondo_libro.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    position: relative;
+}
+
+/* Capa oscura encima del fondo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: -1;
+}
+
+h1 {
+    font-size: 2.8rem;
+    text-shadow: 0 0 20px rgba(0,0,0,0.5);
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    font-weight: 300;
+}
+
+/* TARJETA MÁS ALTA VERTICALMENTE */
+.card {
+    background: rgba(15, 15, 25, 0.95);
+    backdrop-filter: blur(3px);
+    width: 380px;
+    min-height: 600px;  /* Altura mínima aumentada */
+    border-radius: 20px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* CONTENEDOR DE LA PORTADA MÁS GRANDE */
+.card img {
+    width: 100%;
+    height: 450px;  /* Aumentado de 320px a 450px */
+    object-fit: cover;
+    object-position: top;  /* Muestra la parte superior de la imagen */
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Para cuando no hay portada */
+.no-cover {
+    background: linear-gradient(135deg, #1a1a2e, #0f0f1a);
+    height: 450px;  /* Aumentado para coincidir */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: rgba(255,255,255,0.4);
+}
+
+/* INFO CON MÁS ESPACIO */
+.info {
+    padding: 30px 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info h2 {
+    margin: 0 0 15px 0;
+    font-size: 1.8rem;  /* Título más grande */
+    color: #fff;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.info p {
+    margin: 12px 0;
+    font-size: 1.1rem;  /* Texto más grande */
+    color: #ddd;
+}
+
+.info strong {
+    color: #e94560;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 14px 40px;  /* Botón más grande */
+    background: linear-gradient(45deg, #e94560, #c73b54);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(233,69,96,0.3);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background: linear-gradient(45deg, #ff5575, #e94560);
+    box-shadow: 0 8px 25px rgba(233,69,96,0.4);
+}
